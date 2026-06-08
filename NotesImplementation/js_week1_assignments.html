@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JS Week 1 — Practice Assignments</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Sora:wght@300;400;500;600&display=swap');
+
+  :root {
+    --bg: #0d0d10;
+    --surface: #13131a;
+    --surface2: #1a1a24;
+    --border: #252530;
+    --accent: #6c63ff;
+    --teal: #38bdf8;
+    --green: #4ade80;
+    --orange: #fb923c;
+    --red: #f87171;
+    --yellow: #fbbf24;
+    --text: #dde1f0;
+    --muted: #6b7280;
+    --white: #f1f5f9;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Sora', sans-serif;
+    font-size: 14.5px;
+    line-height: 1.8;
+  }
+
+  .page { max-width: 820px; margin: 0 auto; padding: 52px 28px 80px; }
+
+  /* Header */
+  .header-tag {
+    font-size: 11px; letter-spacing: 0.15em; color: var(--accent);
+    text-transform: uppercase; font-weight: 600; margin-bottom: 10px;
+  }
+  h1 { font-size: 30px; font-weight: 600; color: var(--white); margin-bottom: 6px; }
+  .header-sub { color: var(--muted); font-size: 13.5px; margin-bottom: 10px; }
+
+  .legend {
+    display: flex; flex-wrap: wrap; gap: 10px;
+    margin: 22px 0 44px;
+    padding: 16px 18px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+  }
+  .legend-item { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--muted); }
+  .dot { width: 8px; height: 8px; border-radius: 50%; }
+
+  /* Problem Card */
+  .problem {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    margin-bottom: 28px;
+    overflow: hidden;
+  }
+
+  .problem-header {
+    padding: 14px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--border);
+    background: var(--surface2);
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .problem-left { display: flex; align-items: center; gap: 12px; }
+
+  .prob-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 600;
+    color: #fff;
+    background: var(--accent);
+    padding: 3px 9px;
+    border-radius: 5px;
+    letter-spacing: 0.04em;
+  }
+
+  .prob-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--white);
+  }
+
+  .difficulty {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 20px;
+    border: 1px solid;
+  }
+  .diff-easy { color: var(--green); border-color: var(--green); background: #4ade8010; }
+  .diff-medium { color: var(--yellow); border-color: var(--yellow); background: #fbbf2410; }
+  .diff-hard { color: var(--red); border-color: var(--red); background: #f8717110; }
+
+  .problem-body { padding: 20px 22px; }
+
+  .tags { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 16px; }
+  .tag {
+    font-size: 11px;
+    font-weight: 500;
+    padding: 2px 9px;
+    border-radius: 4px;
+    letter-spacing: 0.03em;
+  }
+  .tag-mon { background: #6c63ff20; color: var(--accent); border: 1px solid #6c63ff40; }
+  .tag-tue { background: #38bdf820; color: var(--teal); border: 1px solid #38bdf840; }
+  .tag-wed { background: #fb923c20; color: var(--orange); border: 1px solid #fb923c40; }
+  .tag-thu { background: #4ade8020; color: var(--green); border: 1px solid #4ade8040; }
+
+  .section-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin: 16px 0 7px;
+  }
+  .section-label:first-of-type { margin-top: 0; }
+
+  p { color: var(--text); margin-bottom: 10px; line-height: 1.85; }
+  p:last-child { margin-bottom: 0; }
+
+  ul { padding-left: 20px; margin-bottom: 10px; }
+  ul li { color: var(--text); margin-bottom: 5px; line-height: 1.75; }
+
+  code {
+    font-family: 'JetBrains Mono', monospace;
+    background: #1e1e2e;
+    border: 1px solid var(--border);
+    padding: 1px 6px;
+    border-radius: 4px;
+    font-size: 12.5px;
+    color: var(--yellow);
+  }
+
+  pre {
+    background: #0f0f18;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+    overflow-x: auto;
+    margin: 8px 0 12px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12.5px;
+    line-height: 1.7;
+    color: var(--text);
+  }
+  pre .cm { color: #4b5563; font-style: italic; }
+  pre .kw { color: #c084fc; }
+  pre .str { color: #86efac; }
+  pre .num { color: var(--yellow); }
+
+  .hint-box {
+    background: #1a1a2e;
+    border-left: 3px solid var(--accent);
+    border-radius: 0 6px 6px 0;
+    padding: 10px 14px;
+    margin-top: 14px;
+    font-size: 13px;
+    color: var(--muted);
+  }
+  .hint-box strong { color: var(--accent); }
+
+  .divider { border: none; border-top: 1px solid var(--border); margin: 36px 0; }
+
+  .section-title {
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 600;
+    margin-bottom: 18px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .section-title::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="header-tag">Week 1 · Mon – Thu · Practice</div>
+  <h1>Real-World Assignments</h1>
+  <p class="header-sub">10 programs. Each one uses actual concepts from your first 4 days. Solve in plain JS files — no browser, just <code>console.log</code>.</p>
+
+  <div class="legend">
+    <div class="legend-item"><div class="dot" style="background:var(--accent)"></div> MON — Variables, Data types, Type coercion</div>
+    <div class="legend-item"><div class="dot" style="background:var(--teal)"></div> TUE — Operators, Conditionals, Switch</div>
+    <div class="legend-item"><div class="dot" style="background:var(--orange)"></div> WED — Loops, for...of, for...in</div>
+    <div class="legend-item"><div class="dot" style="background:var(--green)"></div> THU — Functions, Default params, Rest params</div>
+  </div>
+
+  <!-- ─── PROBLEM 1 ─── -->
+  <div class="section-title">Easy</div>
+
+  <div class="problem">
+    <div class="problem-header">
+      <div class="problem-left">
+        <span class="prob-num">P-01</span>
+        <span class="prob-title">Electricity Bill Calculator</span>
+      </div>
+      <span class="difficulty diff-easy">Easy</span>
+    </div>
+    <div class="problem-body">
+      <div class="tags">
+        <span class="tag tag-mon">Variables</span>
+        <span class="tag tag-mon">Data types</span>
+        <span class="tag tag-tue">if/else</span>
+        <span class="tag tag-tue">Operators</span>
+      </div>
+
+      <div class="section-label">Problem</div>
+      <p>A power company charges electricity based on slabs. Write a program that takes units consumed and prints the full bill breakdown.</p>
+
+      <div class="section-label">Slab rates</div>
+      <ul>
+        <li>0 – 100 units → ₹3 per unit</li>
+        <li>101 – 200 units → ₹5 per unit (for units above 100)</li>
+        <li>201 – 300 units → ₹7 per unit (for units above 200)</li>
+        <li>Above 300 → ₹10 per unit (for units above 300)</li>
+        <li>Add 18% GST on the final amount</li>
+      </ul>
+
+      <div class="section-label">Expected output (for 250 units)</div>
+      <pre>Units consumed: 250
+Base charge: ₹1150
+GST (18%): ₹207
+Total bill: ₹1357</pre>
+
+      <div class="hint-box"><strong>Hint:</strong> Use separate if-else blocks for each slab. Compute the charge slab by slab and add them up — don't multiply all units by the highest slab rate.</div>
+    </div>
+  </div>
+
+  <!-- ─── PROBLEM 2 ─── -->
+  <div class="problem">
+    <div class="problem-header">
+      <div class="problem-left">
+        <span class="prob-num">P-02</span>
+        <span class="prob-title">ATM Machine</span>
+      </div>
+      <span class="difficulty diff-easy">Easy</span>
+    </div>
+    <div class="problem-body">
+      <div class="tags">
+        <span class="tag tag-mon">Variables</span>
+        <span class="tag tag-tue">switch</span>
+        <span class="tag tag-tue">Conditionals</span>
+        <span class="tag tag-tue">Operators</span>
+      </div>
+
+      <div class="section-label">Problem</div>
+      <p>Simulate a basic ATM. The user has a starting balance of ₹10,000 and a PIN of <code>1234</code>. Write logic to handle three operations using a <code>switch</code> statement.</p>
+
+      <div class="section-label">Operations to handle</div>
+      <ul>
+        <li><strong>withdraw</strong> — ask for PIN first. If wrong, print "Incorrect PIN". If correct, check balance. If not enough, print "Insufficient balance". Otherwise deduct and print new balance.</li>
+        <li><strong>deposit</strong> — add the amount to balance, print new balance.</li>
+        <li><strong>balance</strong> — print current balance.</li>
+        <li>Any other operation — print "Invalid operation".</li>
+      </ul>
+
+      <div class="section-label">Test your code with</div>
+      <pre><span class="cm">// Try all cases manually by changing these values</span>
+<span class="kw">let</span> operation = <span class="str">"withdraw"</span>;
+<span class="kw">let</span> amount = <span class="num">3000</span>;
+<span class="kw">let</span> enteredPin = <span class="num">1234</span>;</pre>
+
+      <div class="hint-box"><strong>Hint:</strong> Use <code>switch(operation)</code>. Inside the <code>"withdraw"</code> case, nest an if/else for the PIN check, then another for the balance check.</div>
+    </div>
+  </div>
+
+  <!-- ─── PROBLEM 3 ─── -->
+  <div class="problem">
+    <div class="problem-header">
+      <div class="problem-left">
+        <span class="prob-num">P-03</span>
+        <span class="prob-title">Type Coercion Debugger</span>
+      </div>
+      <span class="difficulty diff-easy">Easy</span>
+    </div>
+    <div class="problem-body">
+      <div class="tags">
+        <span class="tag tag-mon">typeof</span>
+        <span class="tag tag-mon">Type coercion</span>
+        <span class="tag tag-tue">Operators</span>
+      </div>
+
+      <div class="section-label">Problem</div>
+      <p>A junior developer wrote the code below expecting certain results, but got surprised outputs due to type coercion. Your job: for each line, write a comment predicting what it prints and <em>why</em>. Then fix each line to produce the intended result.</p>
+
+      <pre><span class="cm">// What does each line print? Write your prediction as a comment.</span>
+<span class="cm">// Then fix it to produce the INTENDED result.</span>
+
+console.log(<span class="str">"5"</span> + <span class="num">3</span>);          <span class="cm">// Intended: 8</span>
+console.log(<span class="str">"5"</span> - <span class="num">3</span>);          <span class="cm">// Intended: 2</span>
+console.log(<span class="str">"5"</span> * <span class="str">"2"</span>);        <span class="cm">// Intended: 10</span>
+console.log(<span class="kw">null</span> + <span class="num">1</span>);         <span class="cm">// Intended: 1</span>
+console.log(<span class="kw">undefined</span> + <span class="num">1</span>);   <span class="cm">// Intended: 1</span>
+console.log(<span class="kw">true</span> + <span class="kw">true</span>);     <span class="cm">// Intended: 2</span>
+console.log(<span class="str">"10"</span> == <span class="num">10</span>);      <span class="cm">// Intended: strict comparison → false</span>
+console.log(<span class="str">""</span> == <span class="kw">false</span>);     <span class="cm">// Intended: strict comparison → false</span></pre>
+
+      <div class="hint-box"><strong>Hint:</strong> Use <code>Number()</code>, <code>parseInt()</code>, or <code>===</code> to fix. Print <code>typeof</code> each value when unsure.</div>
+    </div>
+  </div>
+
+  <!-- ─── MEDIUM ─── -->
+  <hr class="divider">
+  <div class="section-title">Medium</div>
+
+  <!-- ─── PROBLEM 4 ─── -->
+  <div class="problem">
+    <div class="problem-header">
+      <div class="problem-left">
+        <span class="prob-num">P-04</span>
+        <span class="prob-title">Student Report Card</span>
+      </div>
+      <span class="difficulty diff-medium">Medium</span>
+    </div>
+    <div class="problem-body">
+      <div class="tags">
+        <span class="tag tag-mon">Objects</span>
+        <span class="tag tag-tue">if/else</span>
+        <span class="tag tag-wed">for...of</span>
+        <span class="tag tag-thu">Functions</span>
+      </div>
+
+      <div class="section-label">Problem</div>
+      <p>You are given an array of students. Each student has a name and marks in 5 subjects. Write a program that processes all students and prints a full report card.</p>
+
+      <div class="section-label">Data to use</div>
+      <pre><span class="kw">const</span> students = [
+  { name: <span class="str">"Arjun"</span>,  marks: [<span class="num">88</span>, <span class="num">72</span>, <span class="num">91</span>, <span class="num">65</span>, <span class="num">78</span>] },
+  { name: <span class="str">"Priya"</span>,  marks: [<span class="num">55</span>, <span class="num">48</span>, <span class="num">60</span>, <span class="num">38</span>, <span class="num">52</span>] },
+  { name: <span class="str">"Ravi"</span>,   marks: [<span class="num">95</span>, <span class="num">89</span>, <span class="num">94</span>, <span class="num">92</span>, <span class="num">97</span>] },
+  { name: <span class="str">"Sneha"</span>,  marks: [<span class="num">40</span>, <span class="num">35</span>, <span class="num">50</span>, <span class="num">32</span>, <span class="num">28</span>] },
+  { name: <span class="str">"Vikram"</span>, marks: [<span class="num">70</span>, <span class="num">65</span>, <span class="num">80</span>, <span class="num">75</span>, <span class="num">68</span>] },
+];</pre>
+
+      <div class="section-label">What to compute for each student</div>
+      <ul>
+        <li>Total marks and percentage</li>
+        <li>Grade: A (≥80%), B (≥65%), C (≥50%), D (≥40%), F (below 40%)</li>
+        <li>Result: PASS if percentage ≥ 40% and no individual subject below 33. Else FAIL.</li>
+      </ul>
+
+      <div class="section-label">Overall class stats to print at end</div>
+      <ul>
+        <li>Class topper (highest percentage)</li>
+        <li>Class average percentage</li>
+        <li>Count of passed and failed students</li>
+      </ul>
+
+      <div class="hint-box"><strong>Hint:</strong> Write a separate function <code>getGrade(percentage)</code> and another <code>getResult(marks, percentage)</code>. Loop over students with <code>for...of</code>, and loop over each student's marks with another <code>for...of</code> to calculate total.</div>
+    </div>
+  </div>
+
+  <!-- ─── PROBLEM 5 ─── -->
+  <div class="problem">
+    <div class="problem-header">
+      <div class="problem-left">
+        <span class="prob-num">P-05</span>
+        <span class="prob-title">Shopping Cart Billing System</span>
+      </div>
+      <span class="difficulty diff-medium">Medium</span>
+    </div>
+    <div class="problem-body">
+      <div class="tags">
+        <span class="tag tag-mon">Objects</span>
+        <span class="tag tag-tue">Conditionals</span>
+        <span class="tag tag-wed">for...of</span>
+        <span class="tag tag-thu">Functions</span>
+        <span class="tag tag-thu">Default params</span>
+      </div>
+
+      <div class="section-label">Problem</div>
+      <p>Build the billing logic for a shopping cart. A customer has a cart of items and may apply a coupon code. Print an itemized bill.</p>
+
+      <div class="section-label">Cart data</div>
+      <pre><span class="kw">const</span> cart = [
+  { name: <span class="str">"Rice (5kg)"</span>,     price: <span class="num">280</span>, qty: <span class="num">2</span> },
+  { name: <span class="str">"Cooking Oil"</span>,    price: <span class="num">160</span>, qty: <span class="num">1</span> },
+  { name: <span class="str">"Biscuits"</span>,       price: <span class="num">40</span>,  qty: <span class="num">5</span> },
+  { name: <span class="str">"Shampoo"</span>,        price: <span class="num">220</span>, qty: <span class="num">1</span> },
+  { name: <span class="str">"Notebook"</span>,       price: <span class="num">60</span>,  qty: <span class="num">3</span> },
+];</pre>
+
+      <div class="section-label">Rules</div>
+      <ul>
+        <li>Coupon <code>"SAVE10"</code> → 10% discount on subtotal</li>
+        <li>Coupon <code>"SAVE20"</code> → 20% discount on subtotal</li>
+        <li>Coupon <code>"FREESHIP"</code> → ₹0 delivery (else ₹50 delivery)</li>
+        <li>No coupon → no discount, ₹50 delivery</li>
+        <li>Add 5% GST on the discounted subtotal</li>
+      </ul>
+
+      <div class="section-label">Write a function</div>
+      <pre><span class="kw">function</span> <span class="str">generateBill</span>(cart, coupon = <span class="str">""</span>) {
+  <span class="cm">// your code here</span>
+}</pre>
+
+      <div class="section-label">Expected output format</div>
+      <pre>----- BILL -----
+Rice (5kg)     x2   ₹560
+Cooking Oil    x1   ₹160
+...
+----------------
+Subtotal:           ₹1260
+Discount (10%):    -₹126
+GST (5%):           ₹56.7
+Delivery:           ₹50
+----------------
+TOTAL:              ₹1240.7</pre>
+
+      <div class="hint-box"><strong>Hint:</strong> First loop through cart to get subtotal. Then apply coupon logic with if/else. Default param <code>coupon = ""</code> means no coupon was passed. Calculate in order: subtotal → discount → GST → delivery → total.</div>
+    </div>
+  </div>
+
+  <!-- ─── PROBLEM 6 ─── -->
+  <div class="problem">
+    <div class="problem-header">
+      <div class="problem-left">
+        <span class="prob-num">P-06</span>
+        <span class="prob-title">Password Strength Checker</span>
+      </div>
+      <span class="difficulty diff-medium">Medium</span>
+    </div>
+    <div class="problem-body">
+      <div class="tags">
+        <span class="tag tag-mon">Strings</span>
+        <span class="tag tag-tue">Conditionals</span>
+        <span class="tag tag-wed">for loop</span>
+        <span class="tag tag-thu">Functions</span>
+        <span class="tag tag-thu">Arrow functions</span>
+      </div>
+
+      <div class="section-label">Problem</div>
+      <p>Write a password validator that checks a given password string against 5 rules and rates its strength.</p>
+
+      <div class="section-label">Rules</div>
+      <ul>
+        <li>At least 8 characters long</li>
+        <li>Contains at least one uppercase letter (A–Z)</li>
+        <li>Contains at least one lowercase letter (a–z)</li>
+        <li>Contains at least one digit (0–9)</li>
+        <li>Contains at least one special character from <code>!@#$%^&*</code></li>
+      </ul>
+
+      <div class="section-label">Strength rating</div>
+      <ul>
+        <li>0–2 rules passed → <strong>Weak</strong></li>
+        <li>3–4 rules passed → <strong>Medium</strong></li>
+        <li>5 rules passed → <strong>Strong</strong></li>
+      </ul>
+
+      <div class="section-label">Function signature</div>
+      <pre><span class="kw">function</span> checkPassword(password) {
+  <span class="cm">// return { strength: "Strong", passed: 5, failed: [] }</span>
+}</pre>
+
+      <div class="section-label">Test with</div>
+      <pre>checkPassword(<span class="str">"hello"</span>);          <span class="cm">// Weak</span>
+checkPassword(<span class="str">"Hello123"</span>);       <span class="cm">// Medium</span>
+checkPassword(<span class="str">"Hello@123"</span>);      <span class="cm">// Strong</span></pre>
+
+      <div class="hint-box"><strong>Hint:</strong> Loop over each character of the string with a <code>for</code> loop. Use separate boolean flags like <code>hasUpper</code>, <code>hasDigit</code>, etc. Update them as you scan each character. Use <code>.includes()</code> to check if a character is in <code>"!@#$%^&*"</code>.</div>
+    </div>
+  </div>
+
+  <!-- ─── PROBLEM 7 ─── -->
+  <div class="problem">
+    <div class="problem-header">
+      <div class="problem-left">
+        <span class="prob-num">P-07</span>
+        <span class="prob-title">Employee Payroll System</span>
+      </div>
+      <span class="difficulty diff-medium">Medium</span>
+    </div>
+    <div class="problem-body">
+      <div class="tags">
+        <span class="tag tag-mon">Variables</span>
+        <span class="tag tag-tue">Conditionals</span>
+        <span class="tag tag-wed">for...of</span>
+        <span class="tag tag-thu">Rest params</span>
+        <span class="tag tag-thu">Default params</span>
+        <span class="tag tag-thu">Functions</span>
+      </div>
+
+      <div class="section-label">Problem</div>
+      <p>Write a payroll function that accepts an employee name, their hourly rate (default ₹500), and a list of daily hours worked for the month using rest params.</p>
+
+      <div class="section-label">Function signature</div>
+      <pre><span class="kw">function</span> calculateSalary(name, hourlyRate = <span class="num">500</span>, ...dailyHours) {
+  <span class="cm">// your code here</span>
+}</pre>
+
+      <div class="section-label">Rules</div>
+      <ul>
+        <li>Sum all daily hours to get total hours worked</li>
+        <li>Standard month = 160 hours. Hours beyond 160 = overtime</li>
+        <li>Overtime rate = 1.5× the hourly rate</li>
+        <li>Regular pay = min(totalHours, 160) × hourlyRate</li>
+        <li>Overtime pay = overtimeHours × hourlyRate × 1.5</li>
+        <li>Tax deduction: gross > ₹80,000 → 30%, > ₹40,000 → 20%, else → 10%</li>
+        <li>Print: gross pay, tax deducted, net pay</li>
+      </ul>
+
+      <div class="section-label">Test with</div>
+      <pre>calculateSalary(<span class="str">"Ramesh"</span>, <span class="num">600</span>, <span class="num">8</span>, <span class="num">9</span>, <span class="num">8</span>, <span class="num">10</span>, <span class="num">8</span>, <span class="num">8</span>, <span class="num">9</span>);
+calculateSalary(<span class="str">"Sita"</span>, <span class="kw">undefined</span>, <span class="num">8</span>, <span class="num">8</span>, <span class="num">8</span>, <span class="num">8</span>, <span class="num">8</span>); <span class="cm">// uses default rate</span></pre>
+
+      <div class="hint-box"><strong>Hint:</strong> <code>...dailyHours</code> gives you an array. Use <code>for...of</code> to sum it. Pass <code>undefined</code> for hourlyRate to trigger the default value.</div>
+    </div>
+  </div>
+
+  <!-- ─── HARD ─── -->
+  <hr class="divider">
+  <div class="section-title">Hard</div>
+
+  <!-- ─── PROBLEM 8 ─── -->
+  <div class="problem">
+    <div class="problem-header">
+      <div class="problem-left">
+        <span class="prob-num">P-08</span>
+        <span class="prob-title">Inventory Management System</span>
+      </div>
+      <span class="difficulty diff-hard">Hard</span>
+    </div>
+    <div class="problem-body">
+      <div class="tags">
+        <span class="tag tag-mon">Objects</span>
+        <span class="tag tag-tue">Conditionals</span>
+        <span class="tag tag-wed">for...in</span>
+        <span class="tag tag-wed">for...of</span>
+        <span class="tag tag-thu">Functions</span>
+        <span class="tag tag-thu">Arrow functions</span>
+      </div>
+
+      <div class="section-label">Problem</div>
+      <p>A store has an inventory stored as a nested object. Write four separate functions to manage it.</p>
+
+      <div class="section-label">Inventory data</div>
+      <pre><span class="kw">const</span> inventory = {
+  apple:   { price: <span class="num">20</span>,  stock: <span class="num">150</span>, category: <span class="str">"fruit"</span>    },
+  banana:  { price: <span class="num">10</span>,  stock: <span class="num">8</span>,   category: <span class="str">"fruit"</span>    },
+  milk:    { price: <span class="num">55</span>,  stock: <span class="num">40</span>,  category: <span class="str">"dairy"</span>    },
+  cheese:  { price: <span class="num">220</span>, stock: <span class="num">5</span>,   category: <span class="str">"dairy"</span>    },
+  rice:    { price: <span class="num">60</span>,  stock: <span class="num">200</span>, category: <span class="str">"grain"</span>    },
+  wheat:   { price: <span class="num">45</span>,  stock: <span class="num">12</span>,  category: <span class="str">"grain"</span>    },
+  shampoo: { price: <span class="num">180</span>, stock: <span class="num">0</span>,   category: <span class="str">"personal"</span> },
+};</pre>
+
+      <div class="section-label">Functions to write</div>
+      <ul>
+        <li><code>totalInventoryValue(inventory)</code> — returns total value (price × stock) of all items combined</li>
+        <li><code>lowStockAlert(inventory, threshold)</code> — prints all items where stock ≤ threshold, or "OUT OF STOCK" if stock is 0</li>
+        <li><code>getByCategory(inventory, category)</code> — returns an array of item names belonging to that category</li>
+        <li><code>applyDiscount(inventory, category, percent)</code> — reduces the price of every item in a given category by the given percentage, updates the inventory object</li>
+      </ul>
+
+      <div class="section-label">Test calls</div>
+      <pre>console.log(totalInventoryValue(inventory));
+lowStockAlert(inventory, <span class="num">10</span>);
+console.log(getByCategory(inventory, <span class="str">"dairy"</span>));
+applyDiscount(inventory, <span class="str">"fruit"</span>, <span class="num">15</span>);
+console.log(inventory.apple.price); <span class="cm">// should be 17</span></pre>
+
+      <div class="hint-box"><strong>Hint:</strong> Use <code>for...in</code> to loop over the inventory object keys. Inside each, use <code>inventory[key]</code> to access the nested object. For <code>applyDiscount</code>, modify <code>inventory[key].price</code> directly.</div>
+    </div>
+  </div>
+
+  <!-- ─── PROBLEM 9 ─── -->
+  <div class="problem">
+    <div class="problem-header">
+      <div class="problem-left">
+        <span class="prob-num">P-09</span>
+        <span class="prob-title">Number Analyzer</span>
+      </div>
+      <span class="difficulty diff-hard">Hard</span>
+    </div>
+    <div class="problem-body">
+      <div class="tags">
+        <span class="tag tag-tue">Operators</span>
+        <span class="tag tag-tue">Conditionals</span>
+        <span class="tag tag-wed">while loop</span>
+        <span class="tag tag-wed">for loop</span>
+        <span class="tag tag-thu">Functions</span>
+        <span class="tag tag-thu">Arrow functions</span>
+      </div>
+
+      <div class="section-label">Problem</div>
+      <p>Write an <code>analyzeNumber(n)</code> function that fully analyzes a given positive integer. Write each check as a separate named arrow function, then call them all inside <code>analyzeNumber</code>.</p>
+
+      <div class="section-label">Checks to implement</div>
+      <ul>
+        <li><strong>isPrime(n)</strong> — a number with no divisors other than 1 and itself. 1 is not prime.</li>
+        <li><strong>isPerfect(n)</strong> — sum of all divisors (excluding itself) equals the number. Example: 6 → divisors are 1,2,3 → sum=6 ✓</li>
+        <li><strong>isArmstrong(n)</strong> — sum of each digit raised to the power of total digits equals n. Example: 153 → 1³+5³+3³ = 153 ✓</li>
+        <li><strong>isPalindrome(n)</strong> — number reads same forwards and backwards. Example: 121 ✓</li>
+        <li><strong>getDivisors(n)</strong> — returns an array of all divisors of n</li>
+      </ul>
+
+      <div class="section-label">Expected output (for 153)</div>
+      <pre>Analyzing: 153
+Is Prime:      false
+Is Perfect:    false
+Is Armstrong:  true
+Is Palindrome: false
+Divisors:      [1, 3, 9, 17, 51, 153]</pre>
+
+      <div class="hint-box"><strong>Hint:</strong> For isPrime, loop from 2 to √n (use <code>Math.sqrt()</code>). For isArmstrong, convert n to a string to find its length (number of digits), then extract digits using the <code>%</code> and <code>Math.floor()</code> operators in a while loop. For isPerfect, loop from 1 to n-1 and collect divisors.</div>
+    </div>
+  </div>
+
+  <!-- ─── PROBLEM 10 ─── -->
+  <div class="problem">
+    <div class="problem-header">
+      <div class="problem-left">
+        <span class="prob-num">P-10</span>
+        <span class="prob-title">Cricket Scorecard Generator</span>
+      </div>
+      <span class="difficulty diff-hard">Hard</span>
+    </div>
+    <div class="problem-body">
+      <div class="tags">
+        <span class="tag tag-mon">Variables</span>
+        <span class="tag tag-tue">Conditionals</span>
+        <span class="tag tag-wed">for...of</span>
+        <span class="tag tag-wed">Nested loops</span>
+        <span class="tag tag-thu">Functions</span>
+        <span class="tag tag-thu">Rest params</span>
+      </div>
+
+      <div class="section-label">Problem</div>
+      <p>You are given a ball-by-ball commentary array. Each entry is a string representing what happened on that ball. Generate a complete scorecard from it.</p>
+
+      <div class="section-label">Ball outcomes (strings)</div>
+      <ul>
+        <li><code>"0"</code> – dot ball (no runs)</li>
+        <li><code>"1"</code>, <code>"2"</code>, <code>"3"</code>, <code>"4"</code>, <code>"6"</code> – runs scored</li>
+        <li><code>"W"</code> – wicket (no runs, adds 1 wicket)</li>
+        <li><code>"WD"</code> – wide (1 extra run, ball not counted in over)</li>
+        <li><code>"NB"</code> – no ball (1 extra run, ball not counted in over)</li>
+      </ul>
+
+      <div class="section-label">Match data</div>
+      <pre><span class="kw">const</span> balls = [
+  <span class="str">"1"</span>,<span class="str">"4"</span>,<span class="str">"0"</span>,<span class="str">"W"</span>,<span class="str">"2"</span>,<span class="str">"6"</span>,
+  <span class="str">"WD"</span>,<span class="str">"3"</span>,<span class="str">"0"</span>,<span class="str">"4"</span>,<span class="str">"1"</span>,<span class="str">"W"</span>,<span class="str">"6"</span>,
+  <span class="str">"0"</span>,<span class="str">"0"</span>,<span class="str">"NB"</span>,<span class="str">"4"</span>,<span class="str">"6"</span>,<span class="str">"0"</span>,<span class="str">"1"</span>,
+  <span class="str">"W"</span>,<span class="str">"4"</span>,<span class="str">"1"</span>,<span class="str">"0"</span>,<span class="str">"6"</span>,<span class="str">"2"</span>,
+];</pre>
+
+      <div class="section-label">What to compute and print</div>
+      <ul>
+        <li>Total runs scored</li>
+        <li>Total wickets fallen</li>
+        <li>Total extras (wides + no balls)</li>
+        <li>Total legal balls bowled and overs completed (e.g. "4.2 overs")</li>
+        <li>Run rate (total runs / overs as decimal)</li>
+        <li>Over-by-over summary: which runs were scored in each over</li>
+        <li>Highest scoring over</li>
+        <li>Total fours and sixes hit</li>
+      </ul>
+
+      <div class="section-label">Expected output format</div>
+      <pre>==== SCORECARD ====
+Total:        87/3
+Overs:        4.0
+Run Rate:     21.75
+Extras:       2 (2 WD, 0 NB)
+Fours: 5  Sixes: 3
+
+-- Over Summary --
+Over 1: 13 runs  [1,4,0,W,2,6]
+Over 2: ...
+Best over: Over 1 (13 runs)</pre>
+
+      <div class="hint-box"><strong>Hint:</strong> Maintain a <code>legalBalls</code> counter (only increments on non-wide, non-no-ball deliveries). Every 6 legal balls = 1 over. Use a nested array to group balls by over. Use <code>continue</code> inside your loop to skip extras from the ball count.</div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

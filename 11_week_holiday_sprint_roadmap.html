@@ -1,0 +1,172 @@
+
+<h2 class="sr-only">11-week holiday sprint: June 4 to August 20 — JS, Node.js, and Robotics with daily schedule and projects</h2>
+<style>
+.rm{padding:1rem 0}
+.ph-legend{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:14px}
+.ph-key{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--color-text-secondary)}
+.ph-dot{width:8px;height:8px;border-radius:2px;flex-shrink:0}
+.week-sel{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:18px;align-items:center}
+.wsep{width:1px;height:24px;background:var(--color-border-tertiary);margin:0 4px}
+.wbtn{min-width:36px;height:30px;padding:0 6px;border-radius:var(--border-radius-md);border:0.5px solid var(--color-border-secondary);font-size:12px;font-weight:500;cursor:pointer;background:var(--color-background-primary);color:var(--color-text-secondary);transition:all .15s}
+.wbtn:hover{background:var(--color-background-secondary)}
+.wa1{background:#EEEDFE!important;border-color:#7F77DD!important;color:#3C3489!important}
+.wa2{background:#E1F5EE!important;border-color:#1D9E75!important;color:#085041!important}
+.wa3{background:#FAEEDA!important;border-color:#BA7517!important;color:#633806!important}
+.wa4{background:#FAECE7!important;border-color:#D85A30!important;color:#4A1B0C!important}
+.wa5{background:#EAF3DE!important;border-color:#3B6D11!important;color:#173404!important}
+@media(prefers-color-scheme:dark){
+.wa1{background:#26215C!important;border-color:#7F77DD!important;color:#CECBF6!important}
+.wa2{background:#04342C!important;border-color:#1D9E75!important;color:#9FE1CB!important}
+.wa3{background:#412402!important;border-color:#BA7517!important;color:#FAC775!important}
+.wa4{background:#4A1B0C!important;border-color:#D85A30!important;color:#F5C4B3!important}
+.wa5{background:#173404!important;border-color:#639922!important;color:#C0DD97!important}}
+.ph-tag{display:inline-block;font-size:11px;font-weight:500;letter-spacing:.05em;border-radius:4px;padding:2px 8px;margin-bottom:6px}
+.pt1{background:#EEEDFE;color:#534AB7}.pt2{background:#E1F5EE;color:#0F6E56}
+.pt3{background:#FAEEDA;color:#854F0B}.pt4{background:#FAECE7;color:#993C1D}.pt5{background:#EAF3DE;color:#3B6D11}
+@media(prefers-color-scheme:dark){
+.pt1{background:#26215C;color:#AFA9EC}.pt2{background:#04342C;color:#5DCAA5}
+.pt3{background:#412402;color:#FAC775}.pt4{background:#4A1B0C;color:#F5C4B3}.pt5{background:#173404;color:#97C459}}
+.wk-title{font-size:17px;font-weight:500;color:var(--color-text-primary);margin:4px 0 2px}
+.curr{display:inline-block;font-size:10px;background:var(--color-background-success);color:var(--color-text-success);border-radius:3px;padding:1px 7px;margin-left:8px;font-weight:500;vertical-align:2px}
+.wk-dates{font-size:12px;color:var(--color-text-tertiary);margin-bottom:3px}
+.wk-focus{font-size:13px;color:var(--color-text-secondary);line-height:1.5;margin-bottom:14px}
+.dgrid{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:10px}
+.dcard,.wknd{background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:9px 11px}
+.wknd{grid-column:1/-1}
+.dlbl{font-size:10px;font-weight:500;color:var(--color-text-tertiary);letter-spacing:.07em;margin-bottom:3px}
+.dtxt{font-size:12px;color:var(--color-text-secondary);line-height:1.45}
+.pcard{background:var(--color-background-secondary);border:0.5px solid var(--color-border-secondary);border-radius:var(--border-radius-lg);padding:12px 14px;margin-bottom:10px}
+.pbadge{font-size:10px;font-weight:500;letter-spacing:.08em;margin-bottom:5px}
+.pb1{color:#534AB7}.pb2{color:#0F6E56}.pb3{color:#854F0B}.pb4{color:#993C1D}.pb5{color:#3B6D11}
+@media(prefers-color-scheme:dark){.pb1{color:#AFA9EC}.pb2{color:#5DCAA5}.pb3{color:#FAC775}.pb4{color:#F5C4B3}.pb5{color:#97C459}}
+.ptitle{font-size:14px;font-weight:500;color:var(--color-text-primary);margin-bottom:4px}
+.pdesc{font-size:12px;color:var(--color-text-secondary);line-height:1.55}
+.dsa{display:flex;align-items:center;gap:10px;background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:8px 12px}
+.dsalbl{font-size:11px;color:var(--color-text-tertiary);white-space:nowrap;font-weight:500;letter-spacing:.05em}
+.dsatrack{flex:1;background:var(--color-border-tertiary);border-radius:3px;height:5px}
+.dsafill{height:5px;border-radius:3px;background:#BA7517;transition:width .4s}
+.dsanum{font-size:12px;font-weight:500;color:var(--color-text-primary);min-width:90px;text-align:right}
+</style>
+
+<div class="rm">
+<div class="ph-legend">
+  <span class="ph-key"><span class="ph-dot" style="background:#7F77DD"></span>JS Mastery (W1–3)</span>
+  <span class="ph-key"><span class="ph-dot" style="background:#1D9E75"></span>Node + Express (W4–6)</span>
+  <span class="ph-key"><span class="ph-dot" style="background:#BA7517"></span>DB + Auth (W7–8)</span>
+  <span class="ph-key"><span class="ph-dot" style="background:#D85A30"></span>Deploy (W9)</span>
+  <span class="ph-key"><span class="ph-dot" style="background:#3B6D11"></span>Robotics (W10–11)</span>
+</div>
+<div class="week-sel" id="ws"></div>
+<div id="wd"></div>
+</div>
+
+<script>
+const PH=[1,1,1,2,2,2,3,3,4,5,5];
+const PN=['','Phase 1 — JS Mastery','Phase 2 — Node + Express','Phase 3 — DB + Auth','Phase 4 — Deploy','Phase 5 — Robotics'];
+const W=[
+{title:'JavaScript Fundamentals — Part 1',dates:'June 4–10',curr:true,
+focus:'Syntax, data types, functions, scope. The absolute foundation — every line of Node.js code uses these.',
+days:[['MON','Variables: let/const/var differences. Data types: string, number, boolean, null, undefined, object. Type coercion tricks.'],['TUE','Operators: arithmetic, comparison, logical. Conditionals: if/else, ternary operator, switch statement.'],['WED','Loops: for, while, do-while, for...of, for...in. break and continue. Nested loop practice.'],['THU','Functions: declarations vs expressions vs arrow functions. Default params, rest params (...args), return values.'],['FRI','Scope (block/function/global), hoisting, closures intro. Write 5 programs that combine everything so far.']],
+wknd:'Sat: Write 10 small programs from scratch — FizzBuzz, calculator, number guessing game, reverse a string, check palindrome, find max in array, count vowels, factorial, Fibonacci, star pattern. Sun: Review your weakest day + first 2 Leetcode Easy problems.',
+proj:null,dsa:2,dsaTxt:'2 problems — Two Sum, Reverse String'},
+
+{title:'JavaScript Fundamentals — Part 2',dates:'June 11–17',curr:false,
+focus:'Arrays, objects, and ES6+. These appear in literally every JS program — master them completely this week.',
+days:[['MON','Arrays: creation, indexing, .push/.pop/.shift/.unshift, .length, .slice, .splice, .concat.'],['TUE','Array methods: .map(), .filter(), .reduce(), .find(), .findIndex(), .some(), .every(), .flat().'],['WED','Objects: key-value pairs, dot and bracket notation, methods, the this keyword, Object.keys/values/entries.'],['THU','ES6+: template literals, destructuring (arrays + objects), spread operator, rest, optional chaining (?.), nullish coalescing (??).'],['FRI','Modules: import/export (ES modules) vs require/module.exports (CommonJS). When each is used in real projects.']],
+wknd:'Sat: Build student grade calculator — takes an array of student objects with marks, outputs class average, top scorer, and pass/fail list. Must use .map(), .filter(), and .reduce() together. Sun: Review + 4 more Leetcode Easy.',
+proj:{badge:'MINI PROJECT',title:'Student grade calculator',desc:'Array of student objects {name, marks[]}. Compute: (1) per-student average, (2) class average, (3) top scorer, (4) pass/fail list. Pure JS, no libraries. Forces real use of .map(), .filter(), .reduce() together in one program.'},
+dsa:6,dsaTxt:'6 total — palindrome, valid anagram'},
+
+{title:'Async JavaScript — Most Important Week',dates:'June 18–24',curr:false,
+focus:'80% of beginners get stuck here. Understand async deeply this week — it unlocks everything in Node.js.',
+days:[['MON','Callbacks: what they are, the JS event loop, call stack vs task queue. The callback hell problem with example.'],['TUE','Promises: new Promise(), .then(), .catch(), .finally(), Promise.all(), Promise.race(), Promise.allSettled().'],['WED','async/await: syntax, await inside try/catch, awaiting in parallel vs sequence. Convert promise code to async/await.'],['THU','fetch API: GET and POST requests, reading JSON with .json(), handling HTTP errors, query params in URLs.'],['FRI','Debugging async code: console.log timing traps, unhandled rejections, catching errors in Promise.all.']],
+wknd:'Sat+Sun: Build weather app — user inputs city name, app calls OpenWeatherMap free API using async/await + fetch, displays temperature + conditions + humidity. Must handle: city not found, network failure, loading state.',
+proj:{badge:'MINI PROJECT',title:'Weather app — fetch + async/await',desc:'Calls OpenWeatherMap free API (free tier, no card needed). Shows current temp, weather description, humidity. Handles errors gracefully (invalid city, network down). Your first program that talks to the internet.'},
+dsa:12,dsaTxt:'12 total — valid parentheses, merge sorted arrays'},
+
+{title:'Node.js Core',dates:'June 25 – July 1',curr:false,
+focus:'How Node works underneath. Build WITHOUT Express first — most people skip this and regret it when debugging.',
+days:[['MON','Node runtime: V8 engine, event loop, libuv. How Node differs from browser JS — no DOM, but has fs/os/http/path.'],['TUE','fs module: readFile, writeFile, appendFile, mkdir, readdir — both sync and async versions. Error handling with callbacks.'],['WED','http module: createServer manually, parse request URL + method, write response with statusCode and headers.'],['THU','path + os modules. process object: process.argv (CLI args), process.env, process.exit(). Read input from terminal.'],['FRI','npm: install packages, understand package.json (name, scripts, dependencies, devDependencies), what node_modules is.']],
+wknd:'Sat+Sun: Build file organizer CLI — node organizer.js /path/to/folder reads every file in the folder and moves each one into a subfolder by extension: images/ for .jpg/.png, docs/ for .pdf/.docx, code/ for .js/.py. Pure Node.js, no external libraries.',
+proj:{badge:'MINI PROJECT',title:'File organizer CLI tool',desc:'node organizer.js ./downloads → reads folder, groups files by extension, creates subfolders, moves files. Pure Node.js: uses fs, path, process.argv. No Express, no npm packages. The point is to understand the runtime before using the framework.'},
+dsa:20,dsaTxt:'20 total — linked list reverse, two pointers'},
+
+{title:'Express.js Fundamentals',dates:'July 2–8',curr:false,
+focus:'Your first real server. REST API design with the reasoning behind every decision, not just the syntax.',
+days:[['MON','Install Express, create server.js, understand req + res objects. Compare to the raw http module from last week.'],['TUE','Routing: app.get/post/put/delete, route params (:id), query strings (?search=term), express.Router object.'],['WED','Middleware: the middleware chain concept, express.json(), express.static(), writing custom logging middleware.'],['THU','REST API design: URL naming (/users/:id not /getUserById), HTTP status codes (200 OK, 201 Created, 400/404/500), response shape.'],['FRI','Postman or Thunder Client: test every HTTP method, send JSON body, check headers, verify status codes.']],
+wknd:'Sat+Sun: Build Books REST API — full CRUD with in-memory array storage: GET /books (list all), GET /books/:id (get one), POST /books (add), PUT /books/:id (update), DELETE /books/:id (remove). Handle 404 when ID not found.',
+proj:{badge:'MINI PROJECT',title:'Books REST API — in-memory',desc:'Full CRUD for books. Data stored in a JS array (no DB yet). Every HTTP method tested. 404 when book not found. 400 when required fields missing. This is the last project before adding a real database.'},
+dsa:28,dsaTxt:'28 total — stacks, queues, binary search'},
+
+{title:'Express Deep + Marketplace v0',dates:'July 9–15',curr:false,
+focus:'Professional MVC structure and the start of your real project. This week you stop building toys.',
+days:[['MON','Error handling middleware: centralized error handler at bottom of app, custom AppError class with statusCode + message.'],['TUE','MVC structure: /routes (URL definitions), /controllers (business logic), /models (data shape). Refactor Books API.'],['WED','Input validation: check required fields, types, lengths, email format. Return descriptive 400 errors with field names.'],['THU','dotenv: .env file for all secrets (PORT, DB_URL, JWT_SECRET), process.env access, add .env to .gitignore.'],['FRI','Refactor Books API into full MVC. Then read Express docs for 30 min — understand what you have been using.']],
+wknd:'Sat+Sun: Build Marketplace API v0 — users (register, get profile) and listings (full CRUD) with MVC structure, input validation, error handling, dotenv. In-memory storage — no DB yet but complete and professional.',
+proj:{badge:'PROJECT',title:'NIT Delhi Marketplace API v0',desc:'Users: POST /users/register, GET /users/:id. Listings: full CRUD. MVC folder structure. Input validation on all endpoints. Centralized error handler. dotenv for config. This is the foundation — every subsequent week adds on top of this.'},
+dsa:36,dsaTxt:'36 total — trees: height, BFS, DFS'},
+
+{title:'PostgreSQL + Prisma ORM',dates:'July 16–22',curr:false,
+focus:'Replace in-memory arrays with a real database. The SQL you study here is the same content as your DBMS exam.',
+days:[['MON','PostgreSQL: install locally, create database + user via psql shell. CREATE TABLE, INSERT, SELECT, WHERE, basic types.'],['TUE','SQL deeper: ORDER BY, LIMIT, OFFSET, INNER JOIN, LEFT JOIN, GROUP BY, COUNT, foreign keys, constraints, indexes.'],['WED','Prisma: npm install @prisma/client, schema.prisma, define User and Listing models, npx prisma migrate dev.'],['THU','Prisma CRUD: .create(), .findMany(), .findUnique(), .update(), .delete(), .upsert(). Include related models.'],['FRI','Connect Marketplace v0 to PostgreSQL: replace every in-memory array operation with a Prisma call.']],
+wknd:'Sat+Sun: Marketplace v0.5 — all CRUD persisted in PostgreSQL. Listings linked to users via foreign key (userId field). Data survives server restarts. Test with Postman.',
+proj:{badge:'PROJECT UPGRADE',title:'Marketplace v0.5 — real database',desc:'Marketplace v0 now uses PostgreSQL + Prisma. Data persists between restarts. Listings have a userId foreign key linking them to the user who created them. Proper SQL schema with Prisma migrations.'},
+dsa:44,dsaTxt:'44 total — graphs: BFS/DFS, detect cycle'},
+
+{title:'JWT Auth + Security',dates:'July 23–29',curr:false,
+focus:'Add real login. After this week users can authenticate, and can only edit their own listings.',
+days:[['MON','JWT: header/payload/signature breakdown. The full auth flow: login → server signs token → client sends in header → server verifies.'],['TUE','bcrypt: how password hashing works, what salt rounds are, bcrypt.hash() on register, bcrypt.compare() on login.'],['WED','Register endpoint: validate → hash password → prisma.user.create() → return signed JWT with jsonwebtoken.'],['THU','Login endpoint: find user → bcrypt.compare() → sign JWT → return. Auth middleware: verify token, attach user to req.user.'],['FRI','Authorization layer: ownership check — user can only PUT/DELETE their own listings. Return 403 Forbidden otherwise.']],
+wknd:'Sat+Sun: Complete Marketplace v1 — full register/login, JWT on all protected routes, ownership checks on listing mutations. Test the entire auth flow end-to-end in Postman.',
+proj:{badge:'PROJECT',title:'Marketplace v1 — full authentication',desc:'Complete auth system: register (hashed password), login (returns JWT), protected routes (401 if no token), ownership checks (403 if not your listing). This is production-grade auth. Put this on your resume.'},
+dsa:52,dsaTxt:'52 total — DP intro: Fibonacci, coin change'},
+
+{title:'Docker + Deploy + Go Live',dates:'July 30 – Aug 5',curr:false,
+focus:'Ship it. A live URL with real campus users is worth more on your resume than 10 local-only projects.',
+days:[['MON','Docker: what containers are, write a Dockerfile for Node app (FROM node, COPY, RUN npm install, CMD).'],['TUE','docker-compose: run Node app + PostgreSQL together with one command. Volumes for DB persistence. Env vars in compose.'],['WED','Railway or Render: connect GitHub repo, attach PostgreSQL addon, set environment variables (from your .env), trigger first deploy.'],['THU','GitHub Actions: on push to main → lint → deploy. Write the .github/workflows/deploy.yml file from scratch.'],['FRI','Final checks: all env vars set in production, HTTPS working, test register + login + listing flow on live URL.']],
+wknd:'Sat+Sun: Share the live URL with your NIT Delhi batch. Get real users to register and post listings. Fix any bugs they find. The Marketplace is now live.',
+proj:{badge:'🚀 DEPLOYED PROJECT',title:'Marketplace v1 — live on the internet',desc:'Real URL. Real users can register, log in, and post listings. PostgreSQL in the cloud. Auto-deploys on every git push. HTTPS. This is your first production backend. Add the live URL to your GitHub README and resume immediately.'},
+dsa:60,dsaTxt:'60 total — DP: LCS, longest subarray'},
+
+{title:'C++ Deep Dive + ROS 2 Basics',dates:'Aug 6–12',curr:false,
+focus:'Robotics starts. You know C well — C++ adds OOP, STL, and memory management. ROS 2 running by Friday.',
+days:[['MON','C++ OOP: classes, constructors/destructors, access specifiers (public/private/protected), inheritance, polymorphism, virtual functions.'],['TUE','C++ STL: vector, map, unordered_map, queue, stack, set — usage patterns, iterators, when each is the right choice.'],['WED','C++ memory management: raw new/delete, stack vs heap, unique_ptr and shared_ptr, RAII pattern. Why smart pointers matter.'],['THU','ROS 2 install (Humble) on Ubuntu. Source the overlay. Create a workspace, write first package, colcon build succeeds.'],['FRI','First ROS 2 C++ node: a publisher that sends a std_msgs/Float32 message every second. Run it. See the output with ros2 topic echo.']],
+wknd:'Sat+Sun: Write a ROS 2 pub/sub pair — C++ publisher sends simulated float sensor values on /sensor_data topic, Python subscriber prints received values. Both nodes running simultaneously with ros2 launch.',
+proj:{badge:'MINI PROJECT',title:'ROS 2 publisher + subscriber in C++',desc:'C++ publisher node emits Float32 values on /sensor_data every 500ms. Python subscriber receives and prints them. Run both with a launch file. This is the foundational ROS 2 pattern — every robot node you write is a variation of this.'},
+dsa:66,dsaTxt:'66 total — shortest path: Dijkstra, BFS'},
+
+{title:'Arduino ↔ ROS 2 Bridge',dates:'Aug 13–20',curr:false,
+focus:'Real hardware meets ROS 2. HC-SR04 data flows into ROS topics. Motors respond to commands from the laptop.',
+days:[['MON','micro-ROS: install the micro-ROS Arduino library, set up the micro-ROS agent on laptop, connect Arduino via USB serial.'],['TUE','Publish HC-SR04 ultrasonic distance readings as a ROS 2 std_msgs/Float32 topic directly from Arduino. Verify with ros2 topic echo.'],['WED','ROS 2 services on Arduino: write a service server that triggers a sensor reading on-demand (request/response pattern).'],['THU','Motor control: Arduino subscribes to geometry_msgs/Twist messages from laptop, converts linear.x and angular.z to L298N PWM.'],['FRI','RViz2 visualization: display the HC-SR04 range data as a sensor_msgs/Range message, visualize it in RViz2 on laptop.']],
+wknd:'Sat–Aug 20: Final holiday project — Arduino robot controlled entirely via ROS 2 from laptop. HC-SR04 data visible in RViz2. Publish Twist commands from keyboard_teleop, robot drives in response. Record a demo video.',
+proj:{badge:'FINAL HOLIDAY PROJECT',title:'Arduino robot ↔ ROS 2 bridge',desc:'Arduino publishes HC-SR04 distance as ROS 2 topic. Laptop visualizes in RViz2. Laptop publishes Twist velocity commands, Arduino subscribes and drives L298N motors accordingly. Real hardware talking to ROS 2 over micro-ROS serial bridge. Record a demo — this is resume material.'},
+dsa:70,dsaTxt:'~70 problems by Aug 20 — strong foundation'}
+];
+
+function show(idx){
+  document.querySelectorAll('.wbtn').forEach((b,i)=>{
+    b.className='wbtn';
+    if(i===idx) b.classList.add('wa'+PH[i]);
+  });
+  const w=W[idx],ph=PH[idx],pct=Math.round((w.dsa/70)*100);
+  const dH=w.days.map(([l,t])=>`<div class="dcard"><div class="dlbl">${l}</div><div class="dtxt">${t}</div></div>`).join('');
+  const pjH=w.proj?`<div class="pcard"><div class="pbadge pb${ph}">${w.proj.badge}</div><div class="ptitle">${w.proj.title}</div><div class="pdesc">${w.proj.desc}</div></div>`:'';
+  const cH=w.curr?'<span class="curr">THIS WEEK</span>':'';
+  document.getElementById('wd').innerHTML=`
+    <div class="ph-tag pt${ph}">${PN[ph]}</div>
+    <div class="wk-title">Week ${idx+1} — ${w.title}${cH}</div>
+    <div class="wk-dates">${w.dates}</div>
+    <div class="wk-focus">${w.focus}</div>
+    <div class="dgrid">${dH}<div class="wknd"><div class="dlbl">SAT – SUN</div><div class="dtxt">${w.wknd}</div></div></div>
+    ${pjH}
+    <div class="dsa"><div class="dsalbl">DSA TOTAL</div><div class="dsatrack"><div class="dsafill" style="width:${pct}%"></div></div><div class="dsanum">${w.dsaTxt}</div></div>`;
+}
+
+const ws=document.getElementById('ws');
+[[0,1,2],[3,4,5],[6,7],[8],[9,10]].forEach((g,gi)=>{
+  if(gi>0){const s=document.createElement('div');s.className='wsep';ws.appendChild(s);}
+  g.forEach(i=>{
+    const b=document.createElement('button');
+    b.className='wbtn';b.textContent='W'+(i+1);b.onclick=()=>show(i);ws.appendChild(b);
+  });
+});
+show(0);
+</script>
